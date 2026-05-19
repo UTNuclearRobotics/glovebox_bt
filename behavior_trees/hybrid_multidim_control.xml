@@ -1,0 +1,31 @@
+<root BTCPP_format="4" main_tree_to_execute="Hybrid_Multidim_Control">
+    <!--//////////-->
+    <BehaviorTree ID="Hybrid_Multidim_Control">
+        <Control ID="Sequence" name="root">
+            <!-- <SubTree ID="Re-Zero Force-Torque Sensors" _collapsed="false"/> -->
+            <!-- <Control ID="Parallel" success_count="1" failure_count="1"> -->
+                <!-- <Action ID="TeleoperateTwist"/> -->
+            <Action ID="HybridMultidimControl" 
+                add_admittance_control="false"
+                motion_distance_delta="0.30"
+                filter_order="EMA"
+                max_twist="0.05"
+                ki="0.0"
+                kd="0.00" 
+                kp="0.00"
+                ee_weight="9.02"
+                stiffness="1000;1000;1000;100;100;100"
+                damping="100;100;100;10;10;10"
+                group_name="arm"
+                motion_twist_val="0.045"
+                ft_sensor_frame="end_effector_link"
+                wrench_sub_topic="/force_torque_sensor_broadcaster/wrench"
+                pub_topic="/servo_node/delta_twist_cmds"
+                wrench_setpoint="1;1;1;1;1;1"
+                max_force="3"
+                motion_dimension="y"
+                motion_publish_time_length="60"/>
+            <!-- </Control> -->
+        </Control>
+    </BehaviorTree>
+</root>
